@@ -1,27 +1,10 @@
 ﻿@page
+@using ToDoWebApplication.Models
 @model ToDoWebApplication.Pages.TasksModel
 @{
 }
 
-@functions {
-	class TaskItem
-	{
-		public required string Title { get; set; }
-		public string? Description { get; set; }
-	}
-}
-
-@{
-	List<TaskItem> tasks = new List<TaskItem>()
-	{
-		new TaskItem() { Title = "Первая задача", Description = "Описание к первой задаче" },
-		new TaskItem() { Title = "Вторая задача", Description = "Описание к второй задаче" },
-		new TaskItem() { Title = "Первая задача", Description = "Описание к первой задаче" },
-		new TaskItem() { Title = "Вторая задача", Description = "Описание к второй задаче" },
-	};
-}
-
-@foreach (TaskItem task in tasks)
+@foreach (UserTask task in Model.TaskService.GetTasks())
 {
 	<div class="card mb-3">
 		<div class="card-body">
