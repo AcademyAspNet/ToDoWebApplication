@@ -13,7 +13,7 @@ namespace ToDoWebApplication
             builder.Services.AddRazorPages();
 
             // Register services
-            builder.Services.AddScoped<ITaskService, TaskService>();
+            builder.Services.AddSingleton<ITaskService, TaskService>();
 
             var app = builder.Build();
 

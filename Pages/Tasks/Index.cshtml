@@ -1,8 +1,11 @@
 ﻿@page
 @using ToDoWebApplication.Models
-@model ToDoWebApplication.Pages.TasksModel
+@model ToDoWebApplication.Pages.Tasks.IndexModel
 @{
 }
+
+<a class="btn btn-primary" asp-area="" asp-page="/Tasks/New">Добавить</a>
+<hr />
 
 @foreach (UserTask task in Model.TaskService.GetTasks())
 {
