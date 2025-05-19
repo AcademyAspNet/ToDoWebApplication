@@ -2,13 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ToDoWebApplication.Services;
 
-namespace ToDoWebApplication.Pages
+namespace ToDoWebApplication.Pages.Tasks
 {
-    public class TasksModel : PageModel
+    public class IndexModel : PageModel
     {
         public ITaskService TaskService { get; private set; }
 
-        public TasksModel(ITaskService taskService)
+        public IndexModel(ITaskService taskService)
         {
             TaskService = taskService;
         }

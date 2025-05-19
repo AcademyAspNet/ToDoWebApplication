@@ -1,0 +1,22 @@
+﻿@page
+@model ToDoWebApplication.Pages.Tasks.NewModel
+
+<h1>Новая задача</h1>
+<hr />
+
+<form method="post">
+	<label asp-for="Title">Название задачи:</label><br />
+	<input asp-for="Title" />
+
+	<br />
+
+	<label asp-for="Description">Описание задачи:</label><br />
+	<textarea asp-for="Description" rows="10"></textarea>
+
+	<br /><br />
+
+	<button class="btn btn-primary" type="submit">
+		<i class="bi bi-plus-circle"></i>
+		Добавить
+	</button>
+</form>
