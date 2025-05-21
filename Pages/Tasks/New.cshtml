@@ -4,16 +4,25 @@
 <h1>Новая задача</h1>
 <hr />
 
+@if (Model.ErrorMessage != null)
+{
+	<div class="alert alert-danger">
+		@Model.ErrorMessage
+	</div>
+}
+
 <form method="post">
-	<label asp-for="Title">Название задачи:</label><br />
-	<input asp-for="Title" />
+	<div class="mb-3">
+		<label asp-for="Title" class="form-label">Название задачи</label>
+		<input asp-for="Title" class="form-control" />
+		<span asp-validation-for="Title" class="text-danger"></span>
+	</div>
 
-	<br />
-
-	<label asp-for="Description">Описание задачи:</label><br />
-	<textarea asp-for="Description" rows="10"></textarea>
-
-	<br /><br />
+	<div class="mb-3">
+		<label asp-for="Description" class="form-label">Описание задачи:</label>
+		<textarea asp-for="Description" class="form-control" rows="10"></textarea>
+		<span asp-validation-for="Description" class="text-danger"></span>
+	</div>
 
 	<button class="btn btn-primary" type="submit">
 		<i class="bi bi-plus-circle"></i>
