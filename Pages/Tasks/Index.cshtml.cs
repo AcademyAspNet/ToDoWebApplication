@@ -16,5 +16,10 @@ namespace ToDoWebApplication.Pages.Tasks
         public void OnGet()
         {
         }
+
+        public void OnPostDeleteTask(ulong taskId)
+        {
+            TaskService.DeleteTask(taskId);
+        }
     }
 }

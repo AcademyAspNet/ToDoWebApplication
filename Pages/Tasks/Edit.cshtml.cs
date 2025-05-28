@@ -6,18 +6,17 @@ using ToDoWebApplication.Services;
 
 namespace ToDoWebApplication.Pages.Tasks
 {
-    public class NewModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly ITaskService _taskService;
 
-        public NewModel(ITaskService taskService)
+        public EditModel(ITaskService taskService)
         {
             _taskService = taskService;
         }
 
-        public void OnGet()
-        {
-        }
+        [BindProperty(Name = "taskId", SupportsGet = true)]
+        public ulong TaskId { get; set; }
 
         public string? ErrorMessage { get; private set; }
 
@@ -31,6 +30,19 @@ namespace ToDoWebApplication.Pages.Tasks
         [MaxLength(2048, ErrorMessage = "Описание задачи слишком длинное")]
         public string? Description { get; set; }
 
+        public IActionResult OnGet()
+        {
+            UserTask? task = _taskService.GetTask(TaskId);
+
+            if (task == null)
+                return RedirectToPage("/Tasks/Index");
+
+            Title = task.Title;
+            Description = task.Description;
+
+            return Page();
+        }
+
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
@@ -39,7 +51,15 @@ namespace ToDoWebApplication.Pages.Tasks
                 return Page();
             }
 
-            _taskService.CreateTask(Title, Description);
+            UserTask? task = _taskService.GetTask(TaskId);
+
+            if (task == null)
+                return RedirectToPage("/Tasks/Index");
+
+            task.Title = Title;
+            task.Description = Description;
+
+            _taskService.UpdateTask(TaskId, task);
 
             return RedirectToPage("/Tasks/Index");
         }

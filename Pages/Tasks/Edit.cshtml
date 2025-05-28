@@ -1,0 +1,33 @@
+﻿@page
+@model ToDoWebApplication.Pages.Tasks.EditModel
+
+<h1>Редактирование задачи</h1>
+<hr />
+
+@if (Model.ErrorMessage != null)
+{
+	<div class="alert alert-danger">
+		@Model.ErrorMessage
+	</div>
+}
+
+<form method="post">
+	<input type="hidden" value="@Model.TaskId" />
+
+	<div class="mb-3">
+		<label asp-for="Title" class="form-label">Название задачи</label>
+		<input asp-for="Title" class="form-control" />
+		<span asp-validation-for="Title" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Description" class="form-label">Описание задачи:</label>
+		<textarea asp-for="Description" class="form-control" rows="10"></textarea>
+		<span asp-validation-for="Description" class="text-danger"></span>
+	</div>
+
+	<button class="btn btn-primary" type="submit">
+		<i class="bi bi-floppy"></i>
+		Сохранить
+	</button>
+</form>
